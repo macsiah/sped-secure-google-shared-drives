@@ -1,0 +1,6 @@
+<permission_mappings>
+    <permission name="/admin/home.html">
+		<implies allow="post">/ws/schema/query/net.macsiah.ps.sped.students</implies>
+		<implies allow="post">/ws/schema/query/net.macsiah.ps.sped.rosters</implies>
+    </permission>
+</permission_mappings>

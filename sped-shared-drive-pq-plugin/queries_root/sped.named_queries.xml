@@ -1,0 +1,59 @@
+<queries>
+	<query name="net.macsiah.ps.sped.students" coreTable="STUDENTS" flattened="true">
+		<summary>SPED Student List</summary>
+		<columns>
+			<column column="students.lastfirst">student_name</column>
+			<column column="students.student_number">student_number</column>
+			<column column="students.grade_level">grade_level</column>
+			<column column="schools.abbreviation">school</column>
+			<column column="students.entrydate">latest_entry_date</column>
+			<column column="S_WA_STU_SPECIALPROGRAMS_C.startdate">sped_start_date</column>
+			<column column="S_WA_STU_SPECIALPROGRAMS_C.programcode">programcode</column>
+		</columns>
+		
+		<sql>
+			<![CDATA[
+			select
+				s.lastfirst,
+				s.student_number,
+				s.grade_level,
+				sch.abbreviation school,
+				to_char(s.entrydate, 'mm/dd/yyyy') latest_entry_date,
+				to_char(spedc.startdate, 'mm/dd/yyyy') sped_start_date,
+				spedc.programcode   
+			from S_WA_STU_SPECIALPROGRAMS_C spedc
+			join students s on s.dcid = spedc.STUDENTSDCID
+			join schools sch on sch.school_number = s.schoolid
+			where S.ENROLL_STATUS = 0 and spedc.enddate is null
+			order by s.student_number
+		]]></sql>
+	</query>
+	<query name="net.macsiah.ps.sped.rosters" coreTable="cc" flattened="true">
+		<summary>SPED Rosters</summary>
+		<columns>
+			<column column="students.lastfirst">Folder</column>
+			<column column="users.email_addr">User</column>
+			<column column="schools.abbreviation">School</column>
+			<column column="courses.course_number">CourseNumber</column>
+			<column column="courses.course_name">SectionNumber</column>
+		</columns>		
+		<sql>
+			<![CDATA[
+			select distinct
+				s.lastfirst,
+				U.email_addr,
+				sch.abbreviation,
+				c.course_number,
+				c.course_name
+			from cc 
+			join students s on s.id = cc.STUDENTID
+			join schoolstaff ss on cc.teacherid = ss.id
+			join USERS U on u.dcid = ss.users_dcid
+			join S_WA_STU_SPECIALPROGRAMS_C spedc on spedc.studentsdcid = s.dcid
+			join courses c on c.course_number = cc.course_number
+			join schools sch on sch.school_number = s.schoolid
+			where S.ENROLL_STATUS = 0 and cc.termid >= 3300 and spedc.enddate is null
+			order by 1,2
+		]]></sql>
+	</query>
+</queries>

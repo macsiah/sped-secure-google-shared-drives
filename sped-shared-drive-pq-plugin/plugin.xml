@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://plugin.powerschool.pearson.com"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://plugin.powerschool.pearson.com plugin.xsd"
+        name="SPED Google Shared Drive PQ"
+        version="1.0.0"
+        description="PowerQueries for use with Google Apps Script">
+        
+	<oauth></oauth>
+
+	<access_request>
+		<field table="STUDENTS" field="ID" access="ViewOnly" />
+		<field table="STUDENTS" field="DCID" access="ViewOnly" />
+		<field table="STUDENTS" field="LASTFIRST" access="ViewOnly" />
+		<field table="STUDENTS" field="STUDENT_NUMBER" access="ViewOnly" />
+		<field table="STUDENTS" field="GRADE_LEVEL" access="ViewOnly" />
+		<field table="STUDENTS" field="SCHOOLID" access="ViewOnly" />
+		<field table="STUDENTS" field="ENTRYDATE" access="ViewOnly" />
+		<field table="STUDENTS" field="ENROLL_STATUS" access="ViewOnly" />
+		
+    	<field table="USERS" field="DCID" access="ViewOnly" />
+    	<field table="USERS" field="EMAIL_ADDR" access="ViewOnly" />
+    	
+    	<field table="SCHOOLSTAFF" field="ID" access="ViewOnly" />
+    	<field table="SCHOOLSTAFF" field="USERS_DCID" access="ViewOnly" />
+    	    	
+    	<field table="CC" field="TERMID" access="ViewOnly" />
+    	<field table="CC" field="COURSE_NUMBER" access="ViewOnly" />
+    	<field table="CC" field="SECTION_NUMBER" access="ViewOnly" />
+    	<field table="CC" field="TEACHERID" access="ViewOnly" />
+    	<field table="CC" field="STUDENTID" access="ViewOnly" />
+	
+    	<field table="COURSES" field="COURSE_NUMBER" access="ViewOnly" />
+    	<field table="COURSES" field="COURSE_NAME" access="ViewOnly" />
+
+		<field table="S_WA_STU_SPECIALPROGRAMS_C" field="studentsdcid" access="ViewOnly" />
+		<field table="S_WA_STU_SPECIALPROGRAMS_C" field="startdate" access="ViewOnly" />
+		<field table="S_WA_STU_SPECIALPROGRAMS_C" field="enddate" access="ViewOnly" />
+		<field table="S_WA_STU_SPECIALPROGRAMS_C" field="programcode" access="ViewOnly" />		
+     
+        <field table="SCHOOLS" field="SCHOOL_NUMBER" access="ViewOnly" />
+        <field table="SCHOOLS" field="ABBREVIATION" access="ViewOnly" />
+        
+	</access_request>
+
+    <publisher name="macsiah">
+        <contact email="macsiah@me.com"/>
+    </publisher>
+</plugin>
